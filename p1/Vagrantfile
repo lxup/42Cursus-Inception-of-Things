@@ -1,10 +1,11 @@
 Vagrant.configure("2") do |config|
-  config.vm.box = "cloud-image/ubuntu-24.04"
+  config.vm.box = "ubuntu/bionic64"
+  config.vm.box_version = "20230607.0.5"
 
   config.vm.define "lquehecS" do |control|
     control.vm.hostname = "lquehecS"
     control.vm.network "private_network", ip: "192.168.56.110"
-    control.vm.synced_folder "./shared", "/vagrant/shared", type: "virtualbox"
+    control.vm.synced_folder "./shared", "/vagrant/shared", type: "virtualbox", create: true
     control.vm.provider "virtualbox" do |v|
       v.name = "lquehecS"
       v.memory =  "1024"
@@ -17,7 +18,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "lquehecSW" do |control|
     control.vm.hostname = "lquehecSW"
     control.vm.network "private_network", ip: "192.168.56.111"
-    control.vm.synced_folder "./shared", "/vagrant/shared", type: "virtualbox"
+    control.vm.synced_folder "./shared", "/vagrant/shared", type: "virtualbox", create: true
     control.vm.provider "virtualbox" do |v|
       v.name = "lquehecSW"
       v.memory =  "1024"
