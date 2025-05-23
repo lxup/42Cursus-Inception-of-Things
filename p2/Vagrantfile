@@ -1,0 +1,31 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+BOX = "ubuntu/bionic64"
+BOX_VERSION = "20230607.0.5"
+MEMORY = 1024
+CPUS = 2
+MASTER = "lquehecS"
+MASTER_IP = "192.168.56.110"
+CONF_FOLDER = "/vagrant/conf"
+
+Vagrant.configure("2") do |config|
+  config.vm.box = BOX
+  config.vm.box_version = BOX_VERSION
+
+  config.vm.define MASTER do |control|
+    control.vm.hostname = MASTER
+    control.vm.network "private_network", ip: MASTER_IP
+    control.vm.synced_folder "./conf", CONF_FOLDER, type: "virtualbox"
+    control.vm.provider "virtualbox" do |v|
+      v.name = MASTER
+      v.memory = MEMORY
+      v.cpus = CPUS
+      v.guid = false # Disable GUI
+    end
+    control.vm.provision "shell", path: "scripts/init-master-node.sh", env: {
+      "MASTER_IP" => MASTER_IP,
+      "CONF_FOLDER" => CONF_FOLDER,
+    }
+  end
+end
