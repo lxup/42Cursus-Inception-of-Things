@@ -21,9 +21,10 @@ Vagrant.configure("2") do |config|
       v.name = MASTER
       v.memory = MEMORY
       v.cpus = CPUS
-      v.guid = false # Disable GUI
+      v.gui = false # Disable GUI
     end
     control.vm.provision "shell", path: "scripts/init-master-node.sh", env: {
+      "MASTER" => MASTER,
       "MASTER_IP" => MASTER_IP,
       "CONF_FOLDER" => CONF_FOLDER,
     }

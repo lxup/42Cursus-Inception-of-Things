@@ -21,3 +21,10 @@ sudo chmod 644 /etc/rancher/k3s/k3s.yaml
 # Create alias like in the subject
 echo "alias k='kubectl'" >> /home/vagrant/.bashrc
 
+echo "Waiting node $MASTER..."
+kubectl wait --for=condition=Ready node/"$MASTER"
+echo "Node $MASTER ready !"
+
+kubectl apply -f "$CONF_FOLDER/deployments.yaml"
+kubectl apply -f "$CONF_FOLDER/service.yaml"
+kubectl apply -f "$CONF_FOLDER/ingress.yaml"
