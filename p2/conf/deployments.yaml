@@ -1,13 +1,9 @@
 ---
-apiVersion: v1
-kind: Namespace
-metadata:            
-  name: hello-kubernetes
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: app-one
+  namespace: inception-of-things
   labels:
     app: app-one
 spec:
@@ -27,12 +23,13 @@ spec:
           - name: MESSAGE
             value: "Hello from app1."
           ports:
-            - containerPort: 80
+            - containerPort: 8080 # Default port => https://github.com/paulbouwer/hello-kubernetes/blob/c9d0a54c5f79baa439073166073f2737896eae0c/src/app/server.js#L18
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: app-two
+  namespace: inception-of-things
   labels:
     app: app-two
 spec:
@@ -52,12 +49,13 @@ spec:
           - name: MESSAGE
             value: "Hello from app2."
           ports:
-            - containerPort: 80
+            - containerPort: 8080
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: app-three
+  namespace: inception-of-things
   labels:
     app: app-three
 spec:
@@ -77,6 +75,6 @@ spec:
           - name: MESSAGE
             value: "Hello from app3."
           ports:
-            - containerPort: 80
+            - containerPort: 8080
 
   

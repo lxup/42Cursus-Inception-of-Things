@@ -4,6 +4,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ingress-middleware
+  namespace: inception-of-things
 spec:
   rules:
   - http:
