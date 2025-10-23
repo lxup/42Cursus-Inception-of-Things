@@ -3,7 +3,7 @@
 
 BOX = "ubuntu/bionic64"
 BOX_VERSION = "20230607.0.5"
-MEMORY = 1024
+MEMORY = 2048
 CPUS = 2
 MASTER = "lquehecS"
 MASTER_IP = "192.168.56.110"

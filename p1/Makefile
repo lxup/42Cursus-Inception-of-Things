@@ -6,7 +6,7 @@
 #    By: lquehec <lquehec@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/23 12:10:04 by lquehec           #+#    #+#              #
-#    Updated: 2025/10/23 15:18:10 by lquehec          ###   ########.fr        #
+#    Updated: 2025/10/23 14:53:48 by lquehec          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ down:
 	
 clean:
 	@printf "${YELLOW}> Cleaning all resources... 🧽${END}\n"
-# 	@rm -rf ./shared
+	@rm -rf ./shared
 
 fclean: down clean
 
@@ -66,5 +66,9 @@ re: clean all
 ssh-master:
 	@printf "${YELLOW}> SSH into master node... 🔐${END}\n"
 	@vagrant ssh ${USERNAME}S
+
+ssh-worker:
+	@printf "${YELLOW}> SSH into worker node... 🔐${END}\n"
+	@vagrant ssh ${USERNAME}SW
 
 .PHONY: all down clean fclean status re ssh-master ssh-worker
